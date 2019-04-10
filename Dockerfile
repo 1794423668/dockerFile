@@ -1,7 +1,7 @@
 # Version 0.1
 
 # 基础镜像
-FROM ubuntu:latest
+FROM registry.ispacesys.cn/pm2/restbase:7-centos
 
 # 维护者信息
 MAINTAINER 1794423668@qq.com
