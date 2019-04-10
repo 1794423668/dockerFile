@@ -1,16 +1,15 @@
-# Version 0.1
-
-# 基础镜像
-FROM registry.ispacesys.cn/pm2/restbase:7-centos
-
-# 维护者信息
+FROM centos:centos7
 MAINTAINER 1794423668@qq.com
 
-# 镜像操作命令
-RUN apt-get -yqq update && apt-get install -yqq apache2 && apt-get clean
+RUN yum -y update; yum clean all
+RUN yum -y install epel-release; yum clean all
+RUN yum -y install nodejs npm; yum clean all
 
-# 容器启动命令
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+# copy 程序代码到容器的/src 下
+ADD . /src
 
-# 暴露端口80
-EXPOSE 80
+RUN cd /src; npm install
+
+EXPOSE 3500
+
+CMD ["node", "/src/index.js"]
