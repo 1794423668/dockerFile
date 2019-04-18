@@ -2,7 +2,7 @@ var path = require('path');
 var createError = require('http-errors');
 var express = require('express');
 var appDir = __dirname;
-var rootDir = path.join(appDir,"/..");
+var rootDir = path.join(appDir,"");
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
@@ -22,7 +22,7 @@ var routes = require('./unit/autoRoute');
 app.use('/',routes.getRouter( path.join(appDir,"routes")));
 
 // restbase.handleRoute(app,"/",path.join(appDir,"routes"));
-
+routes.initDir(appDir,rootDir);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

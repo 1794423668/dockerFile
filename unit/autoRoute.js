@@ -85,7 +85,19 @@ module.exports = {
                 });
             }
         });
-    }
+    },
+    initDir: function (appDir, rootDir) {
+        Object.defineProperty(global, "ROOT_DIR", {
+            get: function () {
+                return rootDir;
+            }
+        });
+        Object.defineProperty(global, "APP_ROOT_DIR", {
+            get: function () {
+                return appDir;
+            }
+        });
+      },
 };
 
 function findController(dir, parts, callback) {
