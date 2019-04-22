@@ -7,7 +7,7 @@ pipeline:
     volumes:
       - /tmp/cache:/cache
   build:
-    image: node:6.10.2-alpine
+    image: node:8.11.0-alpine
     commands:
       - npm build
   rebuild-cache:
