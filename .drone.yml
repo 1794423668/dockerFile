@@ -1,40 +1,13 @@
 pipeline:
-  restore-cache:
-    image: drillster/drone-volume-cache
-    restore: true
-    mount:
-      - ./node_modules
-    volumes:
-      - /tmp/cache:/cache
   build:
-    image: node:8.11.0-alpine
+    image: node:6.10.2-alpine
     commands:
-      - npm build
-  rebuild-cache:
-    image: drillster/drone-volume-cache
-    rebuild: true
-    mount:
-      - ./node_modules
-    volumes:
-      - /tmp/cache:/cache
-  publish_for_test:
-    image: 1794423668/test
-    repo: test/bar
-    tags: [ 1.0.0, 1.0, latest ]
-
-  run_server:
-    image: test/bar:latest
-    detach: true
-  
-  verify:
-    image: blueimp/chromedriver
-    environment:
-      - VNC_ENABLED=true
-      - EXPOSE_X11=true
-    commands:
-      - nightwatch
-
+      - yarn install
+      - yarn run build
   publish:
-    image: 1794423668/test
-    repo: production/bar
-    tags: [ 1.0.0, 1.0, latest ]
+    image: plugins/docker
+    repo: eisenxu/realtopper-app
+    secrets: [ docker_username, docker_password ]
+    tags:
+      - latest
+      - ${DRONE_COMMIT_SHA:0:8}
