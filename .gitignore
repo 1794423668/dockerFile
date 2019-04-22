@@ -2,6 +2,7 @@ npm-debug.log
 .vscode
 .vs
 node_modules
+npm-debug.log
 jsconfig.json
 typings.json
 typings/globals/
