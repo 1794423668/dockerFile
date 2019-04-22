@@ -1,0 +1,31 @@
+{
+    "apps": [{
+            "name": "backend",
+            "script": "./www.js",
+            "node_args": [
+            ],
+            "env": {
+                "COMMON_VARIABLE": "true",
+                "NODE_PATH": "/usr/lib/node_modules",
+                "LD_LIBRARY_PATH": "/opt/oracle/instantclient",
+                "DH_ACCESSTOKEN_PATH": "/third/v1/token/getAccessToken",
+                "DH_ZB_URL": "/third/v1/camera/flash/live",
+                "DH_DEVICELIST_PATH": "/third/v1/device/getDeviceList",
+                "NODE_DB_TYPE": "oracledb",
+                "TMP_PATH": "/home/files/temp",
+                "CACHE_CONFIG_TYPE": "memcache",
+                "CACHE_CONFIG_KEY": "HZZ_",
+                "DH_ACCESSKEY": "5c02cae4-032",
+                "DH_MOBILE": "15101031962",
+                "DH_ACCESS_SECRET": "Oubm7sTYGEk1yoEjArKD",
+                "PORT": 3000
+            },
+            "env_dev": {
+                "NODE_ENV": "dev"
+            },
+            "env_production": {
+                "NODE_ENV": "production"
+            }
+        }
+    ]
+}
