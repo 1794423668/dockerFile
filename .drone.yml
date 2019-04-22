@@ -6,12 +6,10 @@ pipeline:
       - ./node_modules
     volumes:
       - /tmp/cache:/cache
-
   build:
-    image: node
+    image: node:6.10.2-alpine
     commands:
-      - npm install
-
+      - npm build
   rebuild-cache:
     image: drillster/drone-volume-cache
     rebuild: true
@@ -19,3 +17,24 @@ pipeline:
       - ./node_modules
     volumes:
       - /tmp/cache:/cache
+  publish_for_test:
+    image: 1794423668/test
+    repo: test/bar
+    tags: [ 1.0.0, 1.0, latest ]
+
+  run_server:
+    image: test/bar:latest
+    detach: true
+  
+  verify:
+    image: blueimp/chromedriver
+    environment:
+      - VNC_ENABLED=true
+      - EXPOSE_X11=true
+    commands:
+      - nightwatch
+
+  publish:
+    image: 1794423668/test
+    repo: production/bar
+    tags: [ 1.0.0, 1.0, latest ]
