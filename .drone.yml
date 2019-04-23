@@ -1,13 +1,32 @@
+clone:
+  git:
+    image: registry.ispacesys.cn/public/drone-git:1.4.0
+
 pipeline:
+
+  # region 构建
+  read-cache:
+    image: registry.ispacesys.cn/public/drone-volume-cache
+    restore: true
+    mount:
+      - ./node_modules
+    volumes:
+      - /cache:/cache
+
   build:
-    image: node:6.10.2-alpine
+    image: registry.ispacesys.cn/cig/gulp:8.11.1-alpine
+    volumes:
+      - /cache/yarn:/user/local/share/.cache/yarn/v1
     commands:
-      - yarn install
-      - yarn run build
-  publish:
-    image: plugins/docker
-    repo: eisenxu/realtopper-app
-    secrets: [ docker_username, docker_password ]
-    tags:
-      - latest
-      - ${DRONE_COMMIT_SHA:0:8}
+      - yarn config set registry https://registry.npm.taobao.org
+      # - yarn config set @cig:registry https://r.ispacesys.cn
+      - yarn install --production
+
+  store-cache:
+    image: registry.ispacesys.cn/public/drone-volume-cache
+    rebuild: true
+    mount:
+      - ./node_modules 
+    volumes:
+      - /cache:/cache
+  # region 构建结束
