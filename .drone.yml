@@ -30,3 +30,4 @@ pipeline:
     volumes:
       - /cache:/cache
   # region 构建结束
+  branches: [ dev ]
