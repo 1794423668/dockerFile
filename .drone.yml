@@ -15,6 +15,7 @@ pipeline:
 
   build:
     image: registry.ispacesys.cn/cig/gulp:8.11.1-alpine
+    privileged: true 
     volumes:
       - /cache/yarn:/user/local/share/.cache/yarn/v1
     commands:
