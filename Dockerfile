@@ -1,7 +1,6 @@
 # FROM centos:centos7
 FROM  registry.ispacesys.cn/pm2/node-echarts:8.11.3-centos
-# LABEL maintainer=cig@spacesystech.com Name=gydsjrest
-# MAINTAINER 1794423668@qq.com
+MAINTAINER 1794423668@qq.com
 # Create app directory
 RUN mkdir -p /root/www/rest
 WORKDIR /root/www/rest
