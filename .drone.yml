@@ -1,34 +1,36 @@
 clone:
   git:
-    image: registry.ispacesys.cn/public/drone-git:1.4.0
+    image: plugins/git
 
 pipeline:
 
-  # region 构建
-  read-cache:
-    image: registry.ispacesys.cn/public/drone-volume-cache
-    restore: true
-    mount:
-      - ./node_modules
-    volumes:
-      - /cache:/cache
-
-  build:
-    image: registry.ispacesys.cn/cig/gulp:8.11.1-alpine
-    privileged: true 
-    volumes:
-      - /cache/yarn:/user/local/share/.cache/yarn/v1
+  backend:
+    image: reg.mritd.me/base/build:2.1.5
     commands:
-      - yarn config set registry https://registry.npm.taobao.org
-      # - yarn config set @cig:registry https://r.ispacesys.cn
-      - yarn install --production
+      - gradle --no-daemon clean assemble
+    when:
+      branch:
+        event: [ push, pull_request ]
+        include: [ master ]
+        exclude: [ develop ]
 
-  store-cache:
-    image: registry.ispacesys.cn/public/drone-volume-cache
-    rebuild: true
-    mount:
-      - ./node_modules 
+#  rebuild-cache:
+#    image: drillster/drone-volume-cache
+#    rebuild: true
+#    mount:
+#      - ./build
+#    volumes:
+#      - /data/drone/$DRONE_COMMIT_SHA:/cache
+
+  docker:
+    image: mritd/docker-kubectl:v1.8.8
+    commands:
+      - bash build_image.sh
     volumes:
-      - /cache:/cache
-  # region 构建结束
-  branches: [ dev ]
+      - /var/run/docker.sock:/var/run/docker.sock
+
+
+
+# Pipeline Conditions
+branches:
+  include: [ dev ]
