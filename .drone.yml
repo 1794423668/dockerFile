@@ -7,7 +7,7 @@ pipeline:
 
   publish:
       image: plugins/docker
-      registry: https://hub.docker.com/ # 仓库
+      registry: https://index.docker.io/v1/ # 仓库
       repo: 1794423668/testnode # docker仓库地址
       # mirror: https://docker.mirrors.ustc.edu.cn
       # 需要使用drone cli添加secrets: http://docs.drone.io/manage-secrets/
