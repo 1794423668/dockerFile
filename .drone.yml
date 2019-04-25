@@ -1,36 +1,12 @@
-clone:
-  git:
-    image: plugins/git
-
 pipeline:
 
-  backend:
-    image: reg.mritd.me/base/build:2.1.5
-    commands:
-      - gradle --no-daemon clean assemble
-    when:
-      branch:
-        event: [ push, pull_request ]
-        include: [ master ]
-        exclude: [ develop ]
-
-#  rebuild-cache:
-#    image: drillster/drone-volume-cache
-#    rebuild: true
-#    mount:
-#      - ./build
-#    volumes:
-#      - /data/drone/$DRONE_COMMIT_SHA:/cache
-
-  docker:
-    image: mritd/docker-kubectl:v1.8.8
-    commands:
-      - bash build_image.sh
+  # region 构建
+  read-cache:
+    image: registry.ispacesys.cn/public/drone-volume-cache
+    restore: true
+    mount:
+      - ./node_modules
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /cache:/cache
 
-
-
-# Pipeline Conditions
-branches:
-  include: [ dev ]
+branches: [ dev ]
