@@ -1,12 +1,12 @@
 pipeline:
 
-  # region 构建
-  read-cache:
-    image: registry.ispacesys.cn/public/drone-volume-cache
-    restore: true
-    mount:
-      - ./node_modules
+ build:
+    image: registry.ispacesys.cn/cig/gulp:8.11.1-alpine
     volumes:
-      - /cache:/cache
+      - /cache/yarn:/user/local/share/.cache/yarn/v1
+    commands:
+      - yarn config set registry https://registry.npm.taobao.org
+      - yarn config set @cig:registry https://r.ispacesys.cn
+      - yarn install --production
 
 branches: [ dev ]
