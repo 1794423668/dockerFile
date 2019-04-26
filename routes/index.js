@@ -1,27 +1,33 @@
 
 var actions = {
   /**
-   * @api {get} /index/sgqy 测试接口
-   * @apiVersion 0.1.0
-   * @apiName sgqy
-   * @apiGroup leTv
-   * @apiSuccess {String} firstname Firstname of the User.
-   * @apiSuccess {String} lastname  Lastname of the User.
    *
+   * @api {post} /m/login.do  登录
+   * @apiName 登录
+   * @apiGroup login
+   * @apiVersion 1.0.0
+   * @apiDescription 接口详细描述
+   *
+   * @apiParam {String} username 用户名
+   * @apiParam {String} password 密码
+   *
+   * @apiSuccess {String} status 结果码
+   * @apiSuccess {String} msg 消息说明
    * @apiSuccessExample Success-Response:
-   *     HTTP/1.1 200 OK
-   *     {
-   *       "firstname": "John",
-   *       "lastname": "Doe"
-   *     }
+   *  HTTP/1.1 200 OK
+   * {
+   * status:0,
+   * msg:'success',
+   * data:{}
+   *  }
    *
-   * @apiError UserNotFound The id of the User was not found.
-   *
-   * @apiErrorExample Error-Response:
-   *     HTTP/1.1 404 Not Found
-   *     {
-   *       "error": "UserNotFound"
-   *     }
+   *  @apiError All 对应<code>id</code>的用户没找到
+   *  @apiErrorExample {json} Error-Response:
+   *  HTTP/1.1 200
+   *  {
+   *   code:-1,
+   *   msg:'user not found',
+   *   }
    */
   sgqy: function (req, res) {
     res.send({ success: 1, data: "大哥啊真是好大哥真是个大傻吊啊! " })
