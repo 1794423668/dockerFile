@@ -1,6 +1,7 @@
 {
-  "name": "dockerfile",
-  "version": "1.0.0",
+  "name": "example",
+  "version": "0.1.0",
+  "description": "apiDoc basic example",
   "private": true,
   "scripts": {
     "start": "node ./www.js"
@@ -24,7 +25,7 @@
     "uuid": "^3.3.2"
   },
   "apidoc": {
-    "title": "laidian",
-    "url": "https://avosapps.com"
+    "title": "Custom apiDoc browser title",
+    "url" : "http//localhost:3000"
   }
 }
