@@ -1,24 +1,25 @@
 define({ "api": [
   {
-    "description": "<p>Author: 张三</p>",
     "type": "post",
-    "url": "/api/passwd/findback",
-    "title": "找回密码",
-    "name": "find_password",
-    "group": "Auth",
+    "url": "/m/login.do",
+    "title": "登录",
+    "name": "__",
+    "group": "login",
+    "version": "1.0.0",
+    "description": "<p>接口详细描述</p>",
     "parameter": {
       "fields": {
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "String",
             "optional": false,
-            "field": "phone",
-            "description": "<p>手机号码</p>"
+            "field": "username",
+            "description": "<p>用户名</p>"
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "String",
             "optional": false,
             "field": "password",
             "description": "<p>密码</p>"
@@ -27,45 +28,57 @@ define({ "api": [
       }
     },
     "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>结果码</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "msg",
+            "description": "<p>消息说明</p>"
+          }
+        ]
+      },
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n {\n    \"code\": 10000,\n    \"msg\": \"密码修改成功\"\n  }",
+          "content": " HTTP/1.1 200 OK\n{\nstatus:0,\nmsg:'success',\ndata:{}\n }",
           "type": "json"
         }
       ]
     },
     "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "All",
+            "description": "<p>对应<code>id</code>的用户没找到</p>"
+          }
+        ]
+      },
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n {\n    \"code\" => 10014,\n    \"msg\" => \"重置密码失败\"\n }",
+          "content": "HTTP/1.1 200\n{\n code:-1,\n msg:'user not found',\n }",
           "type": "json"
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "routes/index.js",
-    "groupTitle": "Auth"
-  },
-  {
-    "description": "<p>Author: 李四</p>",
-    "type": "post",
-    "url": "/api/alliance/user/list",
-    "title": "用户管理列表",
-    "name": "PostUserList",
-    "group": "User",
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n {\n    \"code\": 10000,\n    \"msg\": \"成功\",\n    \"data\":\n       { \n         \"total\":6          //总共的数据条数\n         \"per_page\":100     //每页的数据条数\n         \"current_page\":1   //当前页是第几页\n         \"last_page\":1      //一共有多少页\n         \"next_page_url\":null   //下一页的URL地址\n         \"prev_page_url\":null   //上一页的URL地址\n         \"data\":\n           {\n              'name':         //真实姓名\n              'nickname':     //用户昵称\n              'sex':          //性别\n              'age':          //年龄\n              'email':        //邮箱\n              'phone':        //电话\n            } \n       }\n   }",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "routes/index.js",
-    "groupTitle": "User"
+    "groupTitle": "login",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/index/m/login.do"
+      }
+    ]
   }
 ] });
