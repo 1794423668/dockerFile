@@ -1,4 +1,4 @@
-{
+define({
   "title": "Custom apiDoc browser title",
   "url": "http//localhost:3000",
   "name": "example",
@@ -9,8 +9,8 @@
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2019-04-26T04:00:33.448Z",
+    "time": "2019-04-26T04:00:12.202Z",
     "url": "http://apidocjs.com",
     "version": "0.17.7"
   }
-}
+});

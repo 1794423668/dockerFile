@@ -22,9 +22,9 @@
     "type": "",
     "url": "",
     "version": "0.0.0",
-    "filename": "./doc/main.js",
-    "group": "F__github_dockerFile_doc_main_js",
-    "groupTitle": "F__github_dockerFile_doc_main_js",
+    "filename": "./apiDoc/main.js",
+    "group": "F__github_dockerFile_apiDoc_main_js",
+    "groupTitle": "F__github_dockerFile_apiDoc_main_js",
     "name": ""
   },
   {
