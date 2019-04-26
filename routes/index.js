@@ -1,7 +1,15 @@
 
 var actions = {
   /**
-   * @api {get} /index/sgqy [测试接口]
+   * @api {get} /index/sgqy 测试接口
+   * @apiName sgqy
+   * @apiDescription 测试接口
+   * @apiGroup leTv
+   * @apiSuccessExample {json} Response 200 Example:
+   *    HTTP/1.1 200 OK
+   *    {"code" : 0,
+   *     "msg" : ""成功
+   *   }
    */
   sgqy: function (req, res) {
     res.send({ success: 1, data: "大哥啊真是好大哥真是个大傻吊啊! " })
