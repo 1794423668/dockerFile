@@ -4,7 +4,7 @@ clone:
 
 pipeline:
 
-  # region 构建
+  # region 构建 
   read-cache:
     image: registry.ispacesys.cn/public/drone-volume-cache
     restore: true
