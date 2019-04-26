@@ -22,9 +22,9 @@
     "type": "",
     "url": "",
     "version": "0.0.0",
-    "filename": "./apiDoc/main.js",
-    "group": "F__github_dockerFile_apiDoc_main_js",
-    "groupTitle": "F__github_dockerFile_apiDoc_main_js",
+    "filename": "./doc/main.js",
+    "group": "F__github_dockerFile_doc_main_js",
+    "groupTitle": "F__github_dockerFile_doc_main_js",
     "name": ""
   },
   {
@@ -3811,19 +3811,55 @@
     "type": "get",
     "url": "/index/sgqy",
     "title": "测试接口",
+    "version": "0.1.0",
     "name": "sgqy",
-    "description": "<p>测试接口</p>",
     "group": "leTv",
     "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "firstname",
+            "description": "<p>Firstname of the User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "lastname",
+            "description": "<p>Lastname of the User.</p>"
+          }
+        ]
+      },
       "examples": [
         {
-          "title": "Response 200 Example:",
-          "content": " HTTP/1.1 200 OK\n {\"code\" : 0,\n  \"msg\" : \"\"成功\n}",
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"firstname\": \"John\",\n  \"lastname\": \"Doe\"\n}",
           "type": "json"
         }
       ]
     },
-    "version": "0.0.0",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>The id of the User was not found.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": \"UserNotFound\"\n}",
+          "type": "json"
+        }
+      ]
+    },
     "filename": "./routes/index.js",
     "groupTitle": "leTv"
   }
