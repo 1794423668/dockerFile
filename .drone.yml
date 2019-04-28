@@ -1,17 +1,9 @@
-clone:
-  git:
-    image: registry.ispacesys.cn/public/drone-git:1.4.0
-
 pipeline:
-
-  # region 构建 
-  read-cache:
-    image: registry.ispacesys.cn/public/drone-volume-cache
-    restore: true
-    mount:
-      - ./node_modules
-    volumes:
-      - /cache:/cache
+  build:
+    image: node:8.11.0
+    commands:
+      - npm install --silent
+      - npm test
   # deploy-test:
   #   image: registry.ispacesys.cn/devops/kubernetes:1.0
   #   namespace: test-zhzl
