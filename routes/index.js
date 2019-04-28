@@ -2,22 +2,20 @@
 var actions = {
   /**
    *
-   * @api {post} /m/login.do  登录
-   * @apiName 登录
-   * @apiGroup login
+   * @api {get} /index/sgqy sgqy
+   * @apiName sgqy
+   * @apiGroup 数据维护
    * @apiVersion 1.0.0
    * @apiDescription 接口详细描述
-   *
-   * @apiParam {String} username 用户名
-   * @apiParam {String} password 密码
-   *
-   * @apiSuccess {String} status 结果码
-   * @apiSuccess {String} msg 消息说明
+   * 
+   * 
+   * @api {get} /users
+   * @apiSuccess {Object[]} profiles       List of user profiles.
+   * @apiSuccess {Number}   profiles.age   Users age.
    * @apiSuccessExample Success-Response:
    *  HTTP/1.1 200 OK
    * {
-   * status:0,
-   * msg:'success',
+   * success:1,
    * data:{}
    *  }
    *
@@ -30,7 +28,7 @@ var actions = {
    *   }
    */
   sgqy: function (req, res) {
-    res.send({ success: 1, data: "大哥啊真是好大哥真是个大傻吊啊! " })
+    res.send({ success: 1, data: [{age:10},{age:11}] })
   },
   api: function (req, res) {
     res.sendFile('f:/github/dockerFile/doc/index.html')

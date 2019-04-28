@@ -1,31 +1,38 @@
-const axios = require('axios')
-const cheerio = require('cheerio')
+
 var actions = {
-  getTq: function (req, res) {
-    axios.get('http://www.weather.com.cn/weather/101010100.shtml')
-      .then(function (response) {
-        const $ = cheerio.load(response.data)
-        var data = [];
-        $('#7d li').each(function () {
-          var $this = $(this);
-
-          // 使用trim去掉数据两端的空格
-          data.push({
-            title: trim($this.find('.sky h1').text()),
-            wea: trim($this.find('.sky .wea').text()),
-            leg: trim($this.find('.sky .tem').text())
-          });
-        })
-
-        function trim(str) {
-          return str.replace(/(^\s*)|(\s*$)/g, "");
-        }
-
-        res.send({ success: 1, data: data[1] })
-      })
-      .catch(function (error) {
-        res.send({ success: 0, msg: error })
-      });
+  /**
+   *
+   * @api {get} /user/sgqy sgqy
+   * @apiName sgqy
+   * @apiGroup 数据维护
+   * @apiVersion 1.0.0
+   * @apiDescription 接口详细描述
+   * 
+   * @apiParam {String} id sgqy唯一标识
+   *
+   * @apiSuccess {String} success 结果码
+   * @apiSuccess {String} msg 消息说明
+   * @apiSuccessExample Success-Response:
+   *  HTTP/1.1 200 OK
+   * {
+   * success:1,
+   * msg:'成功',
+   * data:{}
+   *  }
+   *
+   *  @apiError All 对应<code>id</code>的用户没找到
+   *  @apiErrorExample {json} Error-Response:
+   *  HTTP/1.1 200
+   *  {
+   *   code:-1,
+   *   msg:'user not found',
+   *   }
+   */
+  sgqy: function (req, res) {
+    res.send({ success: 1, data: "test " })
+  },
+  api: function (req, res) {
+    res.sendFile('f:/github/dockerFile/doc/index.html')
   },
 };
 module.exports = actions;

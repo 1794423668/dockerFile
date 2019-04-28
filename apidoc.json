@@ -3,8 +3,8 @@
   "version": "1.0.0",  
   "description": "cms-server项目API文档",  
   "title": "cms-server API",   
-  "url" : "http://localhost:3000/index",  
-  "sampleUrl": "http://localhost:3000/index",
+  "url" : "http://localhost:3000",  
+  "sampleUrl": "http://localhost:3000",
   "forceLanguage":"zh-cn",
   "template": {
     "withCompare": true,
