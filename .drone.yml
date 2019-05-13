@@ -1,22 +1,16 @@
 pipeline:
   build:
-    image: node:8.11.0
+    image: node:6.10.2-alpine
     commands:
-      - npm install --silent
-      - npm test
-  # deploy-test:
-  #   image: registry.ispacesys.cn/devops/kubernetes:1.0
-  #   namespace: test-zhzl
-  #   deployment: cigjoin
-  #   container: cigjoin
-  #   registry: registry.ispacesys.cn
-  #   secrets:
-  #     - source: kubernetes_server_test
-  #       target: kubernetes_server    
-  #     - source: kubernetes_cert_test
-  #       target: kubernetes_cert    
-  #     - source: kubernetes_token_test
-  #       target: kubernetes_token               
+      - yarn install
+      - yarn run build
+  publish:
+    image: plugins/docker
+    repo: eisenxu/realtopper-app
+    secrets: [ 1794423668, docker@123 ]
+    tags:
+      - latest
+      - ${DRONE_COMMIT_SHA:0:8}           
 
 branches: [ dev ]
 
