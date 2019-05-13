@@ -11,10 +11,6 @@ pipeline:
     tags:
       - latest
       - ${DRONE_COMMIT_SHA:0:8}           
-
-branches: [ dev ]
-
-
 # pipeline:
 #   build:
 #     image: 1794423668/testnode
